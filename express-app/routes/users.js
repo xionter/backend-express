@@ -23,4 +23,15 @@ router.get('/', function(req, res, next) {
     })
 });
 
+router.post('/', function(req, res, next) {
+    const lastId = users[users.length - 1].id;
+    const newUser = {
+        id: lastId + 1,
+        name : req.body.name
+    }
+
+    users.push(newUser)
+    res.status(201).json(newUser);
+});
+
 module.exports = router;
