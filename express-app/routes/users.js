@@ -34,4 +34,15 @@ router.post('/', function(req, res, next) {
     res.status(201).json(newUser);
 });
 
+router.get('/:id', function(req, res, next) {
+    const userId = parseInt(req.params.id);
+    const user = users.find(u => u.id === userId);
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json(user);
+});
+
 module.exports = router;
